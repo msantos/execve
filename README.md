@@ -1,5 +1,7 @@
 # execve
 
+[![Go Reference](https://pkg.go.dev/badge/codeberg.org/msantos/execve.svg)](https://pkg.go.dev/codeberg.org/msantos/execve)
+
 A Go package for fexecve(3) and execveat(2).
 
 # EXAMPLE
