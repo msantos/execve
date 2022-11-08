@@ -95,7 +95,7 @@ func ExampleFexecve_script() {
 		return
 	}
 
-	if err := file.Chmod(0755); err != nil {
+	if err := file.Chmod(0o755); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
 	}
