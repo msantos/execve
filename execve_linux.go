@@ -28,7 +28,7 @@ func Execveat(fd uintptr, pathname string, argv []string, envv []string, flags i
 		return err
 	}
 
-	_, _, err = syscall.Syscall6(
+	_, _, errno := syscall.Syscall6(
 		unix.SYS_EXECVEAT,
 		fd,
 		uintptr(unsafe.Pointer(pathnamep)),
@@ -38,7 +38,7 @@ func Execveat(fd uintptr, pathname string, argv []string, envv []string, flags i
 		0,
 	)
 
-	return err
+	return errno
 }
 
 // Fexecve executes the program referred to by a file descriptor.

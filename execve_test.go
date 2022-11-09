@@ -59,7 +59,11 @@ func ExampleFexecve() {
 		return
 	}
 
-	if err := execve.Fexecve(fd.Fd(), []string{"sh", "-c", "echo test"}, []string{}); err != nil {
+	if err := execve.Fexecve(
+		fd.Fd(),
+		[]string{"sh", "-c", "echo test"},
+		[]string{},
+	); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
 	}
@@ -114,7 +118,11 @@ func ExampleFexecve_script() {
 
 	sh := fmt.Sprintf("/dev/fd/%d", fd)
 
-	if err := execve.Fexecve(uintptr(fd), []string{sh, "test"}, []string{}); err != nil {
+	if err := execve.Fexecve(
+		uintptr(fd),
+		[]string{sh, "test"},
+		[]string{},
+	); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
 	}

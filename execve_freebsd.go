@@ -33,12 +33,12 @@ func Fexecve(fd uintptr, argv []string, envv []string) error {
 		return err
 	}
 
-	_, _, err = syscall.Syscall(
+	_, _, errno := syscall.Syscall(
 		unix.SYS_FEXECVE,
 		fd,
 		uintptr(unsafe.Pointer(&argvp[0])),
 		uintptr(unsafe.Pointer(&envvp[0])),
 	)
 
-	return err
+	return errno
 }

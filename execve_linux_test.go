@@ -34,7 +34,12 @@ func ExampleExecveat() {
 	n := int32(unix.AT_FDCWD)
 	AT_FDCWD := uintptr(uint32(n))
 
-	if err := execve.Execveat(AT_FDCWD, "sh", []string{"sh", "-c", "echo test"}, []string{}, 0); err != nil {
+	if err := execve.Execveat(
+		AT_FDCWD,
+		"sh", []string{"sh", "-c", "echo test"},
+		[]string{},
+		0,
+	); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
 	}
