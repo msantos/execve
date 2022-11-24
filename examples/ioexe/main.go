@@ -18,7 +18,7 @@ func main() {
 	flag := unix.MFD_CLOEXEC
 
 	stdin := bufio.NewReader(os.Stdin)
-	if p, err := stdin.Peek(2); err != nil && p[0] == '#' && p[1] == '!' {
+	if p, err := stdin.Peek(2); err == nil && p[0] == '#' && p[1] == '!' {
 		flag &= ^unix.MFD_CLOEXEC
 	}
 

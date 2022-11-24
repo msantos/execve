@@ -29,7 +29,7 @@ func main() {
 		log.Fatalln("ReadDir:", err)
 	}
 
-	fd, err := unix.MemfdCreate("fdexe", unix.MFD_CLOEXEC)
+	fd, err := unix.MemfdCreate("dfdexe", unix.MFD_CLOEXEC)
 	if err != nil {
 		log.Fatalln("MemfdCreate:", err)
 	}

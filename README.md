@@ -12,7 +12,7 @@ A Go package for fexecve(3) and execveat(2).
 * [dfdexe](examples/dfdexe/main.go): embed a directory of executables
   in a Go binary and run from memory
 
-* [ioexe](examples/iodexe/main.go): read an executable from stdin and
+* [ioexe](examples/ioexe/main.go): read an executable from stdin and
   run from memory
 
 ## Run an executable using a file descriptor
