@@ -5,15 +5,13 @@
 //	cp /bin/ls exe
 //	cp /usr/bin/vi exe
 //	go build
-//	./dfdexe ls -al
+//	./dfdexe exe/ls -al
 package main
 
 import (
 	"embed"
-	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 
 	"codeberg.org/msantos/execve"
 
@@ -24,34 +22,14 @@ import (
 var exe embed.FS
 
 func main() {
-	dir, err := exe.ReadDir("exe")
+	bin, err := exe.ReadFile(os.Args[1])
 	if err != nil {
-		log.Fatalln("ReadDir:", err)
+		log.Fatalln("ReadFile:", err)
 	}
 
 	fd, err := unix.MemfdCreate("dfdexe", unix.MFD_CLOEXEC)
 	if err != nil {
 		log.Fatalln("MemfdCreate:", err)
-	}
-
-	var bin []byte
-
-	for _, e := range dir {
-		if len(os.Args) == 1 {
-			fmt.Println(e.Name())
-			continue
-		}
-		if !e.IsDir() && e.Name() == os.Args[1] {
-			b, err := exe.ReadFile(filepath.Join("exe", e.Name()))
-			if err != nil {
-				log.Fatalln("ReadFile:", e.Name(), err)
-			}
-			bin = b
-		}
-	}
-
-	if len(os.Args) == 1 || len(bin) == 0 {
-		os.Exit(127)
 	}
 
 	if n, err := unix.Write(fd, bin); err != nil || n != len(bin) {
