@@ -1,11 +1,11 @@
 // Dfdexe embeds and runs a directory of executables from memory. Executables are
-// copied from the `exe` directory:
+// copied from the "bin" directory:
 //
-//	cp /bin/sh exe
-//	cp /bin/ls exe
-//	cp /usr/bin/vi exe
+//	cp /bin/sh bin
+//	cp /bin/ls bin
+//	cp /usr/bin/vi bin
 //	go build
-//	./dfdexe exe/ls -al
+//	./dfdexe bin/ls -al
 package main
 
 import (
@@ -18,11 +18,11 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-//go:embed exe/*
-var exe embed.FS
+//go:embed bin/*
+var bin embed.FS
 
 func main() {
-	bin, err := exe.ReadFile(os.Args[1])
+	bin, err := bin.ReadFile(os.Args[1])
 	if err != nil {
 		log.Fatalln("ReadFile:", err)
 	}

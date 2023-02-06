@@ -1,7 +1,7 @@
 // Fdexe embeds and runs an executable from memory. The executable must
-// be copied to this directory and renamed to `exe`:
+// be copied to this directory and renamed to "bin":
 //
-//	cp /usr/bin/busybox exe
+//	cp /usr/bin/busybox bin
 //	go build
 //	ln -s fdexec ls # busybox uses argv[0]
 //	./ls -alh
@@ -17,8 +17,8 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-//go:embed exe
-var exe []byte
+//go:embed bin
+var bin []byte
 
 func main() {
 	fd, err := unix.MemfdCreate("fdexe", unix.MFD_CLOEXEC)
@@ -26,7 +26,7 @@ func main() {
 		log.Fatalln("MemfdCreate:", err)
 	}
 
-	if n, err := unix.Write(fd, exe); err != nil || n != len(exe) {
+	if n, err := unix.Write(fd, bin); err != nil || n != len(bin) {
 		log.Fatalln("Write:", err)
 	}
 

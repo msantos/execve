@@ -20,8 +20,8 @@
 # Go workspace file
 go.work
 
+examples/dfdexe/bin
 examples/dfdexe/dfdexe
-examples/dfdexe/exe
-examples/fdexe/exe
+examples/fdexe/bin
 examples/fdexe/fdexe
 examples/ioexe/ioexe
