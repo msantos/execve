@@ -92,8 +92,6 @@ func ExampleFexecve_script() {
 		return
 	}
 
-	name := file.Name()
-
 	if _, err := file.Write([]byte("#!/bin/sh\necho $@")); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
@@ -110,7 +108,7 @@ func ExampleFexecve_script() {
 	}
 
 	// Get a file descriptor with O_CLOEXEC unset
-	fd, err := syscall.Open(name, syscall.O_RDONLY, 0)
+	fd, err := syscall.Open(file.Name(), syscall.O_RDONLY, 0)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
