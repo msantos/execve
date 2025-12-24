@@ -1,5 +1,4 @@
 //go:build !linux && !freebsd
-// +build !linux,!freebsd
 
 // Package execve is a wrapper around the system execve(2) and fexecve(3)
 // system calls.
