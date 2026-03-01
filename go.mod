@@ -1,5 +1,5 @@
 module codeberg.org/msantos/execve
 
-go 1.19
+go 1.24.0
 
-require golang.org/x/sys v0.0.0-20220928140112-f11e5e49a4ec
+require golang.org/x/sys v0.41.0
